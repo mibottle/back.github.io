@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 마크다운 작성법
+title: How to write a markdown 
 date: 2019-09-12
 categories: Markdown
 tags: [Test, Ipsum, Markdown, Portfolio]

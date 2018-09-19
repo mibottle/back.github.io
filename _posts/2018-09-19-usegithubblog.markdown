@@ -1,6 +1,6 @@
 ---
 layout: post
-title: mibottle Blog에 Markdown 문서 작성하기
+title: How to use Mibottle Blog
 date: 2019-09-19
 categories: Markdown
 tags: [A kubernetes, group, team, role, rolebinding]
@@ -8,7 +8,7 @@ author: himang10
 description: The read me page of jekyll-xixia.
 ---
 
-## github mibottle.github.io
+## mibottle.github.io
 [mibottle.github.io](https://mibottle.github.io/)을 사용하기 위해 [repository](https://github.com/mibottle/mibottle.github.io)를 clone 하면 됩니다.
 https://github.com/mibottle/mibottle.github.io로 연결하여 `https://github.com/mibottle/mibottle.github.io.git`을 clone하세요.
 ```cli

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Kubectl & helm Command
+title: Kubctl command
 date: 2019-09-12
 categories: Kubernetes
 tags: [A Tag, kubectl, Lorem, Ipsum]

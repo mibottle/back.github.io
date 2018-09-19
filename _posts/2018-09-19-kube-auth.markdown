@@ -1,8 +1,8 @@
 ---
 layout: post
-title: github team으로 k8s group 설정하기
+title: How to create an AuthZ Group in kubernetes
 date: 2019-09-19
-categories: kubernetes
+categories: Kubernetes
 tags: [A kubernetes, group, team, role, rolebinding]
 author: himang10
 description: K8s의 Github와 연동하여 AuthN과 AuthZ 지원하기 위한 방번 섦영
