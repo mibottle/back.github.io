@@ -2,7 +2,7 @@
 layout: post
 title: 마크다운 작성법
 date: 2019-09-12
-categories: Other
+categories: Markdown
 tags: [Test, Ipsum, Markdown, Portfolio]
 author: himang10
 description: Markdown에 대한 설명
