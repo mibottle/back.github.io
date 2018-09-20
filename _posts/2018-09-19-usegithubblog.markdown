@@ -9,12 +9,12 @@ description: The read me page of jekyll-xixia.
 ---
 
 ## mibottle.github.io
-[mibottle.github.io](https://mibottle.github.io/)을 사용하기 위해 [repository](https://github.com/mibottle/mibottle.github.io)를 clone 하면 됩니다.
-https://github.com/mibottle/mibottle.github.io로 연결하여 `https://github.com/mibottle/mibottle.github.io.git`을 clone하세요.
+[mibottle.github.io](https://mibottle.github.io/)을 사용하기 위해 [repository](https://github.com/mibottle/mibottle.github.io.git)를 clone 하면 됩니다.
+`https://github.com/mibottle/mibottle.github.io/tree/master`로 연결하여 URL을 Clone하세요
 ```cli
 $mkdir ~/GitHub
 $cd ~/GitHub
-$git clone https://github.com/mibottle/mibottle.github.io.git
+$git clone [https://github.com/mibottle/mibottle.github.io/tree/master, Clone URL]
 ```
 이 후 `mibottle.io/_post`아래에 작성하고자 하는 markdown file을 생성하면 됩니다.
 markdown 작성법은 [markdown](https://mibottle.github.io/other/2019/09/12/markdown-writing-metho.html)을 참조하면 됩니다.
