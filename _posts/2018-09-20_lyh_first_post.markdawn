@@ -1,3 +1,13 @@
+---
+layout: post
+title: 설정하기
+date: 2019-09-20
+categories: kubernetes
+tags: [A kubernetes, group, team, role, rolebinding]
+author: himang10
+description: The read me page of jekyll-xixia.
+---
+
 임용훈, 첫 글 남김 신고~
 ======================
 
@@ -16,7 +26,9 @@
 > 마크다운으로 처음 문서를 만들었지만
 > 만들긴 만들었네요.
 
+글이 잘 올라가 있을까요?
 
+push 해 보겠습니다.
 
 
 
