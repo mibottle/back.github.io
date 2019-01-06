@@ -2,7 +2,7 @@
 layout: post
 title: k8s에서 configmap resource 생성 및 사용 방법 가이드
 date: 2019-01-06
-categories: kubernetes
+categories: Kubernetes
 tags: [A kubernetes, configmap]
 author: himang10
 description: Configmap 사용을 위한 설명
