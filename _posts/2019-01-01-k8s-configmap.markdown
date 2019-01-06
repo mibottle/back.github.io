@@ -12,7 +12,7 @@ ConfigMap 사용
 
 
 ### configmap 전체 옵션 구조
-<hr/>
+---
 ```
 $ kubectl create configmap my-config
    --from-file=foo.json   # single file
