@@ -11,7 +11,7 @@ ConfigMap 사용
 ============
 
 
-# configmap 전체 옵션 구조
+### configmap 전체 옵션 구조
 <hr/>
 ```
 $ kubectl create configmap my-config
@@ -21,13 +21,13 @@ $ kubectl create configmap my-config
    --from-literal=some=thing.     # 리터럴 값
 ```
 
-# command line에서 configmap 생성
+### command line에서 configmap 생성
 <hr/>
 ```
 $ kubectl create configmap myconfigmap --from-literal=foo=bar --from-literal=bar=baz
 ```
 
-# 파일 내용으로 configmap 엔트리 생성
+### 파일 내용으로 configmap 엔트리 생성
 <hr/>
 ```
 $ cat my-nginx-config.conf
@@ -104,7 +104,7 @@ metadata:
   uid: ce15eaab-1157-11e9-a6b2-fa163e26d271
 ```
 
-# 디렉토리에 있는 파일로 부터 configmap 만들기
+### 디렉토리에 있는 파일로 부터 configmap 만들기
 <hr/>
 ```
 $ ls
@@ -150,7 +150,7 @@ metadata:
   selfLink: /api/v1/namespaces/default/configmaps/my-config
   uid: 717f6751-1158-11e9-a6b2-fa163e26d271
 ```
-# container의 환경변수로 configmap 엔트리 전달하기
+### container의 환경변수로 configmap 엔트리 전달하기
 <hr/>
 ```
 fortune-pod-env-configmap.yaml
@@ -195,7 +195,7 @@ spec:
         name: my-config-map
 ```
 
-## configmap 항목을 명령행 인자로 전달
+*** configmap 항목을 명령행 인자로 전달 ***
 ```
 apiVersion: v1
 kind: Pod
@@ -228,7 +228,7 @@ spec:
   - name: html
     emptyDir: {}
 ```
-# configmap volume을 이용하여 configmap 엔트리를 파일로 노출
+### configmap volume을 이용하여 configmap 엔트리를 파일로 노출
 <hr/>
 ```
 $ kubectl create configmap fortune-config --from-file=configmap-files/
@@ -264,7 +264,7 @@ metadata:
 ```
 container web-server는 /etc/nginx/conf.d --> volume mount해서 볼 수 있도록 설정
 
-## volume에 configmap을 conf.d의 volumemount실행
+*** volume에 configmap을 conf.d의 volumemount실행 ***
 ```
 apiVersion: v1
 kind: Pod
@@ -311,11 +311,11 @@ my-nginx-config.conf
 sleep-interval
 ```
 
-# 볼륨의 특정 configmap 엔트리의 노출
+### 볼륨의 특정 configmap 엔트리의 노출
 <hr/>
 일단 디렉토리 마운트 후 my-nginx-config.conf를 gzip.conf로만 노출하고 있음 다른 것은 보이지 않음
 
-# 개별 항목(파일)을 지정할 때 항목의 키와 함께 개별 항목의 파일 이름을 설정해야 함.
+### 개별 항목(파일)을 지정할 때 항목의 키와 함께 개별 항목의 파일 이름을 설정해야 함.
 <hr/>
 ```
 apiVersion: v1
@@ -351,7 +351,7 @@ spec:
       - key: my-nginx-config.conf
         path: gzip.conf
 ```
-# (파일 마운트) 디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법
+### (파일 마운트) 디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법
 <hr/>
 ```
 configmap:app-config
