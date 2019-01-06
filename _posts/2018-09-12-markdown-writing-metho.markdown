@@ -8,6 +8,7 @@ author: himang10
 description: Markdown에 대한 설명
 ---
 
+[***markdown 설명 상세***](https://github.com/biospin/BigBio/blob/master/reference/마크다운.md/)
 # Markdown ?
 
 # 1. 마크다운에 관하여

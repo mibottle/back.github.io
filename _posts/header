@@ -1,11 +1,16 @@
 ---
 layout: post
-title: github team으로 k8s group 설정하기
-date: 2019-09-19
-categories: kubernetes
-tags: [A kubernetes, group, team, role, rolebinding]
+title: k8s에서 configmap resource 생성 및 사용 방법 가이드
+date: 2019-01-06
+categories: Kubernetes
+tags: [A kubernetes, configmap]
 author: himang10
-description: The read me page of jekyll-xixia.
+description: Configmap 사용을 위한 설명
 ---
-xxx
+ConfigMap 사용
 ============
+
+# Table of Contents
+1. [command line에서 configmap 생성](#command-line에서-configmap-생성)
+2. [configmap entry creation](#configmap-entry-creation)
+3. [디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법](#configmap-entry-mount)
