@@ -152,7 +152,7 @@ metadata:
 ```
 ### container의 환경변수로 configmap 엔트리 전달하기
 <hr/>
-```
+{% highlight linux %}
 fortune-pod-env-configmap.yaml
 - valueFrom: 환경 변수 INTERVAL은 configmap.fortune-config.sleep-interval로 부터 왔다는 것을 정의
 apiVersion: v1
@@ -193,7 +193,8 @@ spec:
     - prefix: CONFIG_                     # 모든 환경변수는 CONFIG_ 접두어 붙어짐. 만약 생략하면 환경변수와 동일한 이름으로 키가 생성
       configMapRef:                        # my-config-map으로 불리는 configmap 참고
         name: my-config-map
-```
+{% endhighlight %}
+
 
 *** configmap 항목을 명령행 인자로 전달 ***
 ```
