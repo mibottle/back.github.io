@@ -197,7 +197,7 @@ spec:
 
 
 *** configmap 항목을 명령행 인자로 전달 ***
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -231,7 +231,7 @@ spec:
 ```
 ### configmap volume을 이용하여 configmap 엔트리를 파일로 노출
 <hr/>
-```
+```yaml
 $ kubectl create configmap fortune-config --from-file=configmap-files/
 configmap "fortune-config" created
 
@@ -266,7 +266,7 @@ metadata:
 container web-server는 /etc/nginx/conf.d --> volume mount해서 볼 수 있도록 설정
 
 *** volume에 configmap을 conf.d의 volumemount실행 ***
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -318,7 +318,7 @@ sleep-interval
 
 ### 개별 항목(파일)을 지정할 때 항목의 키와 함께 개별 항목의 파일 이름을 설정해야 함.
 <hr/>
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -354,7 +354,7 @@ spec:
 ```
 ### (파일 마운트) 디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법
 <hr/>
-```
+```yaml
 configmap:app-config
 * myconfig.conf
 * another-file
