@@ -13,7 +13,7 @@ ConfigMap 사용
 # Table of Contents
 1. [command line에서 configmap 생성](#command-line에서-configmap-생성)
 2. [configmap entry creation](#configmap-entry-creation)
-3. [(파일 마운트) 디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법](#file-mount)
+3. [디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법](#configmap-entry-mount)
 
 ### configmap 전체 옵션 구조
 ---
@@ -356,7 +356,8 @@ spec:
       - key: my-nginx-config.conf
         path: gzip.conf
 ```
-### (파일 마운트) 디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법
+### configmap entry mount
+#### (파일 마운트) 디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법
 <hr/>
 ```yaml
 configmap:app-config
