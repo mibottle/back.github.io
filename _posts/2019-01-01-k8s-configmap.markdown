@@ -12,6 +12,7 @@ ConfigMap 사용
 
 # Table of Contents
 1. [command line에서 configmap 생성](#command-line에서-configmap-생성)
+2. [configmap entry creation](#configmap-entry-creation)
 
 ### configmap 전체 옵션 구조
 ---
@@ -29,7 +30,7 @@ $ kubectl create configmap my-config
 $ kubectl create configmap myconfigmap --from-literal=foo=bar --from-literal=bar=baz
 ```
 
-### 파일 내용으로 configmap 엔트리 생성
+### configmap entry creation
 <hr/>
 ```
 $ cat my-nginx-config.conf
