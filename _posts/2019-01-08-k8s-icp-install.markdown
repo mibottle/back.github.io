@@ -62,6 +62,7 @@ nameserver 10.38.201.250
 ```
 
 6. swap memory off 및 확인
+
 ```
 #/etc/fstab swap 항목 주석 처리하고 swapoff -a 진행
 #/dev/mapper/rhel-swap swap swap defaults 0 0
@@ -75,6 +76,7 @@ swap: 0           0
 ```
 
 7. 패키지 설치
+
 ```
 #socat, ntp 설치
 sudo yum install -y socat ntp
@@ -363,7 +365,8 @@ $ sudo /etc/init.d/networking restart or sudo systemctl restart networking.servi
 $ netstat -tnlp | awk '{print $4}'| egrep -w 8101|8500|3306|
 ````
 
-6. 설치 장애 시 heath check 
+6. 설치 장애 시 heath check
+
 ```
 #만약 계속 장애가 나면 아래 명령어를 수행해서 문제를 확인한다.
 sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee healthcheck
