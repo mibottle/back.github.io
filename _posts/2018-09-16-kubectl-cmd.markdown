@@ -16,7 +16,7 @@ description: Kubernetes 관련 명령어 set 설명
 ## kubectl 기본 명령어
 
 ```
-# cluster-info
+#cluster-info
 kubectl cluster-info
 kubectl config current-context
 kubectl config use-context
@@ -32,19 +32,21 @@ kubectl config set-context <current-context> --namespace=study
 ```
 ### POD 내에서 명령어 실행 방버
 ```
-# docker exec
+#docker exec
 kubectl exec -it [pod name] -- bash
 kubectl exec -it [pod name] -c [container name] -- bash -il
-# example
+
+#example
 kubectl exec -it node-js-pod sh
 ```
 
 ### Context 추가 및 변경
 ```
-# add context
+#add context
 kubectl config view
 kubectl config set-context testk --namespace=testkafka --cluster=k8s.nogada.dev --user=admin
-# change current-context
+
+#change current-context
 kubectl config use-context testk
 kubectl config current-context
 ```
@@ -54,35 +56,36 @@ kubectl config current-context
 kubectl get ns
 kubectl get [resource type] [resource-name] --namespace=kube-system or --all-namespaces
 
-## checking detail status
+##checking detail status
 kubectl describe [resource type] [resource-name] --namespace=kube-system or --all-namespaces
 ````
 ### Pod Log 상세 검색
 ```
-  # check Pod Logs
+  #check Pod Logs
   kubectl logs pod [pod-name]
-  # Return snapshot logs from pod nginx with only one container
+  
+  #Return snapshot logs from pod nginx with only one container
   kubectl logs nginx
 
-  # Return snapshot logs for the pods defined by label app=nginx
+  #Return snapshot logs for the pods defined by label app=nginx
   kubectl logs -lapp=nginx
 
-  # Return snapshot of previous terminated ruby container logs from pod web-1
+  #Return snapshot of previous terminated ruby container logs from pod web-1
   kubectl logs -p -c ruby web-1
 
-  # Begin streaming the logs of the ruby container in pod web-1
+  #Begin streaming the logs of the ruby container in pod web-1
   kubectl logs -f -c ruby web-1
 
-  # Display only the most recent 20 lines of output in pod nginx
+  #Display only the most recent 20 lines of output in pod nginx
   kubectl logs --tail=20 nginx
 
-  # Show all logs from pod nginx written in the last hour
+  #Show all logs from pod nginx written in the last hour
   kubectl logs --since=1h nginx
 
-  # Return snapshot logs from first container of a job named hello
+  #Return snapshot logs from first container of a job named hello
   kubectl logs job/hello
 
-  # Return snapshot logs from container nginx-1 of a deployment named nginx
+  #Return snapshot logs from container nginx-1 of a deployment named nginx
   kubectl logs deployment/nginx -c nginx-1
 ```
 
@@ -107,47 +110,47 @@ kubectl create -f https://git.io/vPieo         # create resource(s) from url
 
 ### resource 실행
 ```
-  # Start a single instance of nginx.
+  #Start a single instance of nginx.
   kubectl run nginx --image=nginx
 
-  # Start a single instance of hazelcast and let the container expose port 5701 .
+  #Start a single instance of hazelcast and let the container expose port 5701 .
   kubectl run hazelcast --image=hazelcast --port=5701
 
-  # Start a single instance of hazelcast and set environment variables "DNS_DOMAIN=cluster" and "POD_NAMESPACE=default"
+  #Start a single instance of hazelcast and set environment variables "DNS_DOMAIN=cluster" and "POD_NAMESPACE=default"
 in the container.
   kubectl run hazelcast --image=hazelcast --env="DNS_DOMAIN=cluster" --env="POD_NAMESPACE=default"
 
-  # Start a single instance of hazelcast and set labels "app=hazelcast" and "env=prod" in the container.
+  #Start a single instance of hazelcast and set labels "app=hazelcast" and "env=prod" in the container.
   kubectl run hazelcast --image=nginx --labels="app=hazelcast,env=prod"
 
-  # Start a replicated instance of nginx.
+  #Start a replicated instance of nginx.
   kubectl run nginx --image=nginx --replicas=5
 
-  # Dry run. Print the corresponding API objects without creating them.
+  #Dry run. Print the corresponding API objects without creating them.
   kubectl run nginx --image=nginx --dry-run
 
-  # Start a single instance of nginx, but overload the spec of the deployment with a partial set of values parsed from
+  #Start a single instance of nginx, but overload the spec of the deployment with a partial set of values parsed from
 JSON.
   kubectl run nginx --image=nginx --overrides='{ "apiVersion": "v1", "spec": { ... } }'
 
-  # Start a pod of busybox and keep it in the foreground, don't restart it if it exits.
+  #Start a pod of busybox and keep it in the foreground, don't restart it if it exits.
   kubectl run -i -t busybox --image=busybox --restart=Never
 
-  # Start the nginx container using the default command, but use custom arguments (arg1 .. argN) for that command.
+  #Start the nginx container using the default command, but use custom arguments (arg1 .. argN) for that command.
   kubectl run nginx --image=nginx -- <arg1> <arg2> ... <argN>
 
-  # Start the nginx container using a different command and custom arguments.
+  #Start the nginx container using a different command and custom arguments.
   kubectl run nginx --image=nginx --command -- <cmd> <arg1> ... <argN>
 
-  # Start the perl container to compute π to 2000 places and print it out.
+  #Start the perl container to compute π to 2000 places and print it out.
   kubectl run pi --image=perl --restart=OnFailure -- perl -Mbignum=bpi -wle 'print bpi(2000)'
 
-  # Start the cron job to compute π to 2000 places and print it out every 5 minutes.
+  #Start the cron job to compute π to 2000 places and print it out every 5 minutes.
   kubectl run pi --schedule="0/5 * * * ?" --image=perl --restart=OnFailure -- perl -Mbignum=bpi -wle 'print bpi(2000)'
 ```
 ### resource 삭제
 ```
-## delete
+##delete
 kubectl delete -f ./pod.json                                              # Delete a pod using the type and name specified in pod.json
 kubectl delete pod,service baz foo                                        # Delete pods and services with same names "baz" and "foo"
 kubectl delete pods,services -l name=myLabel                              # Delete pods and services with label name=myLabel
@@ -158,13 +161,13 @@ kubectl -n my-ns delete po,svc --all                                      # Dele
 persistent volume을 정의하고 Pod 등에서 필요로 하는  Storage Class를 정의한다. Claim은 statefulset에서 설정
 persistent volume & persistence volume chaims & Storage Class
 ```
-## PV & PVC & StorageClass 
+##PV & PVC & StorageClass 
 kubectl -n testkafka describe pvc
 kubectl get storageclass | sc
 ```
 
 ```yaml
-# persistent volume for local node disk volume
+#persistent volume for local node disk volume
 piVersion: v1
 kind: PersistentVolume
 metadata:
@@ -193,7 +196,7 @@ spec:
 
 
 ```yaml
-# Storage Class
+#Storage Class
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -255,7 +258,7 @@ kubectl run busybox --rm -ti --labels="access=true" --image=busybox /bin/sh
 or 
 kubectl exec -it busybox sh -n testkaka
 
-## 접속후
+##접속후
 nslookup
 vi /etc/hosts
 cat /etc/resolv.conf

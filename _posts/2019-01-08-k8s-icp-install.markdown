@@ -63,12 +63,12 @@ nameserver 10.38.201.250
 
 6. swap memory off 및 확인
 ```
-# /etc/fstab swap 항목 주석 처리하고 swapoff -a 진행
-# /dev/mapper/rhel-swap swap swap defaults 0 0
+#/etc/fstab swap 항목 주석 처리하고 swapoff -a 진행
+#/dev/mapper/rhel-swap swap swap defaults 0 0
 swappoff -a
 
-# 명령어를 통해서 swap memory 가 off 되었는지 확인
-# swap memory가 여전히 사용중이라면 reboot 후 다시 확인
+#명령어를 통해서 swap memory 가 off 되었는지 확인
+#swap memory가 여전히 사용중이라면 reboot 후 다시 확인
 free -m
 Mem: 32012 1505 
 swap: 0           0
@@ -76,7 +76,7 @@ swap: 0           0
 
 7. 패키지 설치
 ```
-# socat, ntp 설치
+#socat, ntp 설치
 sudo yum install -y socat ntp
 --> socat-1.7.3.2-2.el7.x86_64 network util
 ```
@@ -108,13 +108,13 @@ tar xvf ibm-cloud-private-x86_64-3.1.1.tar.gz -O | sudo docker load
 ```
 $ python —version
 $ sudo apt-get install python (2.7 version)
-# rhel 7이상은 default로 python 2.7.5 버전이 설치되어 있음
+#rhel 7이상은 default로 python 2.7.5 버전이 설치되어 있음
 ```
 13. /etc/hosts 
 ```
 127.0.0.1       localhost
-# 127.0.1.1     <host_name>
-# The following lines are desirable for IPv6 capable hosts
+#127.0.1.1     <host_name>
+#The following lines are desirable for IPv6 capable hosts
 #::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
@@ -132,7 +132,7 @@ mkdir -p /var/lib/icp/audit
 mkdir -p /var/log/audit
 mkdir -p /var/lib/icp/helmrepo
 
-# Host 내 NAS Voulm을 NFS로 마운트
+#Host 내 NAS Voulm을 NFS로 마운트
 $ mount -t nfs VNX5600_NAS:/Zcp_registry /var/lib/registry
 $....
 ```
@@ -201,7 +201,7 @@ ssh-add /home/ubuntu/himang10.pem 으로 설정 (절체 패스로)
 2. sharing ssh key
 ```
   https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.1/installing/ssh_keys.html
-  # 모든 노드에서 boot node의 ssh public key copy
+  #모든 노드에서 boot node의 ssh public key copy
   ssh-copy-id -i ~/.ssh/id_rsa.pub <user>@node_ip_address>
 ````
 ### 공통 작업
@@ -219,8 +219,8 @@ sudo docker run -v $(pwd):/data -e LICENSE=accept ibmcom/icp-inception-amd64:3.1
 
 5. ssh copy
 ```
-# 1의 ssh key를 cluster ssh key에 복사
-# 해당 정보로 설치 시 cluster node ssh 접근 동작
+#1의 ssh key를 cluster ssh key에 복사
+#해당 정보로 설치 시 cluster node ssh 접근 동작
 cd /opt/ibm-cloud-private-3.1.1
 sudo cp ~/.ssh/id_rsa ./cluster/ssh_key
 ```
@@ -228,7 +228,7 @@ sudo cp ~/.ssh/id_rsa ./cluster/ssh_key
 6. edit config.yaml
 ```
    boot node: /opt/ibm-cloud-private-3.1.1/cluster/config.yaml
-   # OpenStack 환경의 경우 /etc/hosts가 cloud-init 서비스에 의해 관리되는 경우에는 cloud-init 서비스가 /etc/hosts 파일을 수정하지 못하게 해야 합니다. /etc/cloud/cloud.cfg 파일에서 manage_etc_hosts 매개변수가 false로 설정되어 있는지 확인하십시오
+   #OpenStack 환경의 경우 /etc/hosts가 cloud-init 서비스에 의해 관리되는 경우에는 cloud-init 서비스가 /etc/hosts 파일을 수정하지 못하게 해야 합니다. /etc/cloud/cloud.cfg 파일에서 manage_etc_hosts 매개변수가 false로 설정되어 있는지 확인하십시오
 ```
 7. edit hosts file
 ```
@@ -282,9 +282,9 @@ management_services:
 
  kibana_install: true
 
-# install을 위한 사용자를 ubuntu로 변경
-# 참고 자료 https://portal2portal.blogspot.com/2018/10/ibm-cloud-private-310-failed-to-connect.html
-# https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/config_yaml.html
+#install을 위한 사용자를 ubuntu로 변경
+#참고 자료 https://portal2portal.blogspot.com/2018/10/ibm-cloud-private-310-failed-to-connect.html
+#https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/config_yaml.html
 ansible_user: ubuntu
 ansible_become: true
 ````
@@ -304,7 +304,7 @@ $ sudo mv /<path_to_installation_file>/ibm-cloud-private-x86_64-3.1.1.tar.gz  cl
 3. icp install
 ```
 sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee install -vvv  (자세한 로그는 -vvvv)
-# 아래와 같은 화면이 나요면 install 성공
+#아래와 같은 화면이 나요면 install 성공
 UI URL is https://<ip_address>:8443, default username/password is admin/admin
 ```
 4. ICP Uninstall
@@ -329,13 +329,13 @@ $ sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster
 
 2. kubectl 관련 이슈 발생 건
 ```
-# master node의 /usr/local/bin/kubectl을 각 노드에 복사해서 다시 실행 
-# /opt/kubernetes/hyperkube를 /usr/local/bin/kubectl로 링크로 연결
+#master node의 /usr/local/bin/kubectl을 각 노드에 복사해서 다시 실행 
+#opt/kubernetes/hyperkube를 /usr/local/bin/kubectl로 링크로 연결
  $ sudo su - 
  $ cd /usr/local/bin
  $ ln -s /opt/kubernetes/hyperkube kubectl
 
-## 다른 노드들도 그렇게 정의
+##다른 노드들도 그렇게 정의
 #boot node에 hyperkube를 다운로드 해서 링크를 걸어줘야 함
 ````
 
@@ -344,13 +344,14 @@ $ sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster
 $ sudo docker run -v $(pwd):/data -e LICENSE=accept ibmcom/icp-inceptio-amd64:3.1.1-ee cp -r playbook /data
 $ sudo docker run -v $(pwd):/data -e LICENSE=accept ibmcom/icp-inception-amd64:3.1.1-ee cp -r /installer /data
 
-# DOCKER 이미지에서 전체 설정 정보 복사하기
+#DOCKER 이미지에서 전체 설정 정보 복사하기
 ````
 
 4. /etc/hosts restart 방법
 ```
 Offending key for IP in /home/ubuntu/.ssh/known_hosts:4
-# Matching host key in /home/ubuntu/.ssh/known_hosts:12
+
+#Matching host key in /home/ubuntu/.ssh/known_hosts:12
 sed -i '10d' ~/.ssh/known_hosts
 ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R k8s-master-01
 (MAC) ssh-keygen -R k8s-master-01 -f "~/.ssh/known_hosts"
@@ -364,7 +365,7 @@ $ netstat -tnlp | awk '{print $4}'| egrep -w 8101|8500|3306|
 
 6. 설치 장애 시 heath check 
 ```
-# 만약 계속 장애가 나면 아래 명령어를 수행해서 문제를 확인한다.
+#만약 계속 장애가 나면 아래 명령어를 수행해서 문제를 확인한다.
 sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee healthcheck
 ````
 
@@ -376,8 +377,8 @@ $sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster
 
 8. Docker로 직접 접속해서 내부에서 실행 하는 방법 
 ```
-# Docker로 직접 접속해서  (sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh)
-# installer.sh install 실행 후 계속 FAILED일 경우
+#Docker로 직접 접속해서  (sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh)
+#installer.sh install 실행 후 계속 FAILED일 경우
   $ kubectl get pod -n kube-system으로 Pod 동작여부 확인
 ```
 9. kubectl pod pending이면 describe로 내용 확인하여 빠젼 있는 부분 확인
@@ -411,8 +412,8 @@ spec:
 
 10. cluster 접속
 ```
-# docker 접속 후 sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh 실행
-# 다음 것 실행
+#docker 접속 후 sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh 실행
+#다음 것 실행
 kubectl config set-cluster mycluster --server=https://196.90.1.94:8001 --insecure-skip-tls-verify=true && kubectl config set-context mycluster --cluster=mycluster && kubectl config set-credentials admin --client-certificate=/home/ubuntu/cfc-certs/kubernetes/kubecfg.crt --client-key=/home/ubuntu/cfc-certs/kubernetes/kubecfg.key && kubectl config set-context mycluster --user=admin && kubectl config use-context mycluster
 ````
 
@@ -438,7 +439,7 @@ permit-root                 false     []                                        
 값 변경
 
 $ kubectl edit psp ibm-restricted-psp 
-# MustRunAsNonRoot --> RunAsAny
+#MustRunAsNonRoot --> RunAsAny
 ````
 
 12. audit log level 조정 
