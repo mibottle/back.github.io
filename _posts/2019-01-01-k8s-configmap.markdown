@@ -16,7 +16,7 @@ ConfigMap 사용
 3. [디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법](#configmap-entry-mount)
 
 ### configmap 전체 옵션 구조
----
+-----
 ```
 $ kubectl create configmap my-config
    --from-file=foo.json   # single file
