@@ -54,12 +54,14 @@ nameserver 10.38.201.250
 ```
 
 5. 방화벽
+
 ```
 * ZCP Portal 8080 / 8443
 * ZCP Cli API 8001 / 8888
 * ZCP Image Manager 8500 / 8600
 * ZCP Ingress SErvice 80 / 443
 * ZCP App SErvice 접속 30000 ~32737
+
 ```
 
 6. swap memory off 및 확인
