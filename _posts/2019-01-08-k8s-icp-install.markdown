@@ -22,20 +22,18 @@ ICP 3.1.1 Install Guide
 -----
 
 1. DNS 설치
-
 ```
 #/etc/resolv.conf에 nameserver 설정 
 nameserver 10.38.201.250
 ```
 
 2. icp, docker install file copy
-
 ```
 * ibm-cloud-private-x86_64-3.1.1.tar.gz
 * icp-docker-18.03.01_x86_64.bin
 ```
-3. local storage 설정 
 
+3. local storage 설정 
 ```
 * / 100G | all
 * /var/lib/docker 150G | master, mgmt, proxy, worker, va
@@ -48,7 +46,6 @@ nameserver 10.38.201.250
 ```
 
 4. NAS NFS
-
 ```
 * /var/lib/registry 100G | Master
 * /var/lib/icp/audit 100G | M
@@ -57,7 +54,6 @@ nameserver 10.38.201.250
 ```
 
 5. 방화벽
-
 ```
 * ZCP Portal 8080 / 8443
 * ZCP Cli API 8001 / 8888
@@ -67,7 +63,6 @@ nameserver 10.38.201.250
 ```
 
 6. swap memory off 및 확인
-
 ```
 #/etc/fstab swap 항목 주석 처리하고 swapoff -a 진행
 #/dev/mapper/rhel-swap swap swap defaults 0 0
@@ -81,7 +76,6 @@ swap: 0           0
 ```
 
 7. 패키지 설치
-
 ```
 #socat, ntp 설치
 sudo yum install -y socat ntp
@@ -89,7 +83,6 @@ sudo yum install -y socat ntp
 ```
 
 8. ntp 설정 (redhat)
-
 ```
 * (Redhat) sudo systemctl enable ntpd
 * (Redhat) sudo systemctl start ntpd
@@ -113,7 +106,6 @@ tar xvf ibm-cloud-private-x86_64-3.1.1.tar.gz -O | sudo docker load
 ```
 
 12. python 설치 확인
-
 ```
 $ python —version
 $ sudo apt-get install python (2.7 version)
@@ -121,7 +113,6 @@ $ sudo apt-get install python (2.7 version)
 ```
 
 13. /etc/hosts 
-
 ```
 127.0.0.1       localhost
 #127.0.1.1     <host_name>
@@ -135,7 +126,6 @@ ff02::2 ip6-allrouters
 <proxy_node_IP_address> <proxy_node_host_name>
 ```
 ## NFS, NAS Mount 방법
-
 1. NFS  Mount (Master Node)
 ```
 mkdir -p /var/lib/registry
@@ -145,7 +135,7 @@ mkdir -p /var/lib/icp/helmrepo
 
 #Host 내 NAS Voulm을 NFS로 마운트
 $ mount -t nfs VNX5600_NAS:/Zcp_registry /var/lib/registry
-$....
+$~~~
 ```
 2. fstab 설정 (Master Node)
 ```
@@ -156,7 +146,6 @@ VNX5600_NAS:/Zcp_registry      /var/lib/registry nfs rw,hard  0 0
 
 3. Local Disk LV 제거 및 생성
 ```
-
   1.1 기존 Local Disk (500G) LV unmount 및 제거 (Master Node)
        $ unmount /DATA01
        $ lvremove /dev/DATAAVG/LV01
@@ -198,8 +187,8 @@ LV VG Attr LSize Pool
 $ cp himang10 .ssh/id_rsa (private key    복사)
 $ cp .ssh/authorized_keys .ssh/id_rsa.pub
 ```
-### Else pem file이 없는 경우
 
+### Else pem file이 없는 경우
 1. Key gen
 ```
   #login to root 
@@ -209,12 +198,14 @@ ssh-keygen -b 4096 -f ~/.ssh/id_rsa -N ""
 eval #(ssh-agent)
 ssh-add /home/ubuntu/himang10.pem 으로 설정 (절체 패스로)
 ```
+
 2. sharing ssh key
 ```
   https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.1/installing/ssh_keys.html
   #모든 노드에서 boot node의 ssh public key copy
   ssh-copy-id -i ~/.ssh/id_rsa.pub <user>@node_ip_address>
 ````
+
 ### 공통 작업
 
 3. create installation dir
@@ -241,6 +232,7 @@ sudo cp ~/.ssh/id_rsa ./cluster/ssh_key
    boot node: /opt/ibm-cloud-private-3.1.1/cluster/config.yaml
    #OpenStack 환경의 경우 /etc/hosts가 cloud-init 서비스에 의해 관리되는 경우에는 cloud-init 서비스가 /etc/hosts 파일을 수정하지 못하게 해야 합니다. /etc/cloud/cloud.cfg 파일에서 manage_etc_hosts 매개변수가 false로 설정되어 있는지 확인하십시오
 ```
+
 7. edit hosts file
 ```
 cluster node 정보 기입
@@ -259,7 +251,7 @@ cluster node 정보 기입
 #
 #여기에 노드를 기술하지 않으면 node label이 등록되지 않음.
 #management=true, master=true, proxy=true,
-````
+```
 
 8. config.yaml 설정
 ```
@@ -298,7 +290,7 @@ management_services:
 #https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.0/installing/config_yaml.html
 ansible_user: ubuntu
 ansible_become: true
-````
+```
 
 # ICP Install
 <hr/>
@@ -307,22 +299,25 @@ ansible_become: true
 ```
  $ cd /opt/ibm-cloud-private-3.1.1/cluster/
 ```
+
 2. 설치 이미지를 다른 서버에세 사용할 수 있도록 아래 위치로 이동
 ```
 $ sudo mkdir -p cluster/images;
 $ sudo mv /<path_to_installation_file>/ibm-cloud-private-x86_64-3.1.1.tar.gz  cluster/images/
 ```
+
 3. icp install
 ```
 sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee install -vvv  (자세한 로그는 -vvvv)
 #아래와 같은 화면이 나요면 install 성공
 UI URL is https://<ip_address>:8443, default username/password is admin/admin
 ```
+
 4. ICP Uninstall
 ```
 $ cd /opt/ibm-cloud-private-3.1.1/cluster/
 $ sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee uninstall
-`````
+````
 
 5. 필요시  모든 노드 docker service restart
 ```
@@ -336,7 +331,7 @@ $ sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster
 1. tmp folder 권한 이슈
 ```
  $ sudo chmod 777 /tmp
-````
+```
 
 2. kubectl 관련 이슈 발생 건
 ```
@@ -348,7 +343,7 @@ $ sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster
 
 ##다른 노드들도 그렇게 정의
 #boot node에 hyperkube를 다운로드 해서 링크를 걸어줘야 함
-````
+```
 
 3. docker image에서 yaml을 현재 위치의 디렉토리에 playbook아래 복사하는 방법
 ```
@@ -356,7 +351,7 @@ $ sudo docker run -v $(pwd):/data -e LICENSE=accept ibmcom/icp-inceptio-amd64:3.
 $ sudo docker run -v $(pwd):/data -e LICENSE=accept ibmcom/icp-inception-amd64:3.1.1-ee cp -r /installer /data
 
 #DOCKER 이미지에서 전체 설정 정보 복사하기
-````
+```
 
 4. /etc/hosts restart 방법
 ```
@@ -369,34 +364,32 @@ ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R k8s-master-01
 
 $ sudo /etc/init.d/networking restart or sudo systemctl restart networking.service
 ```
+
 5. Network port 확인
 ```
 $ netstat -tnlp | awk '{print $4}'| egrep -w 8101|8500|3306|
-````
+```
 
 6. 설치 장애 시 heath check
-
 ```
 #만약 계속 장애가 나면 아래 명령어를 수행해서 문제를 확인한다.
 sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee healthcheck
-````
+```
 
 7. docker 이미지로 접속 방법
-
 ```
 $cd /opt/ibm-cloud-private-3.1.1/cluster
 $sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh
 ````
 
 8. Docker로 직접 접속해서 내부에서 실행 하는 방법 
-
 ```
 #Docker로 직접 접속해서  (sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh)
 #installer.sh install 실행 후 계속 FAILED일 경우
   $ kubectl get pod -n kube-system으로 Pod 동작여부 확인
 ```
-9. kubectl pod pending이면 describe로 내용 확인하여 빠젼 있는 부분 확인
 
+9. kubectl pod pending이면 describe로 내용 확인하여 빠젼 있는 부분 확인
 ```
 #node selector가 빠져 있을 때 (management=true) —> kubectl label 10.100.1.12 management=true 설정
 만약 PV 가 빠져 있을 때에는
@@ -423,18 +416,16 @@ spec:
           operator: In
           values:
           - 10.100.1.12 
-````
+```
 
 10. cluster 접속
-
 ```
 #docker 접속 후 sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh 실행
 #다음 것 실행
 kubectl config set-cluster mycluster --server=https://196.90.1.94:8001 --insecure-skip-tls-verify=true && kubectl config set-context mycluster --cluster=mycluster && kubectl config set-credentials admin --client-certificate=/home/ubuntu/cfc-certs/kubernetes/kubecfg.crt --client-key=/home/ubuntu/cfc-certs/kubernetes/kubecfg.key && kubectl config set-context mycluster --user=admin && kubectl config use-context mycluster
-````
+```
 
 11. pod 생성 시 PodSecurity Policy 장애 (RunAsUser = MustRunAsNonRoot 문제)
-
 ```
 Events:
   Type     Reason     Age               From                 Message
@@ -457,26 +448,23 @@ permit-root                 false     []                                        
 
 $ kubectl edit psp ibm-restricted-psp 
 #MustRunAsNonRoot --> RunAsAny
-````
+```
 
 12. audit log level 조정 
-
 ```
 /etc/cfc/conf/audit-policy.yaml 에서 로그 조정
-````
+```
 
 13. prometheus 본체 memory size 조정 - > 24 node는 8G
 
 14. apiserver  restart
-
 ```
 /etc/cfc/conf/audit-policy.yaml 수정 후 재 로딩을 위해 kubelet을 재시작해야 함
 --> systemctl restart kubelet.service
 apiserver를 재시작시키려면 systemctl restart kube-apiserver.service
 ```
 
-14. API 기반 로그인 및 Token 요청 방법
-
+15. API 기반 로그인 및 Token 요청 방법
 ```
 $ curl -k -H "Content-Type:application/x-www-form-urlencoded:charset=UTF-8" -d "grant_type=password&username=admin&password=admin&scope=openid" https://10.38.201.191:8443/idprovider/auth/identitytoken --insecure
 curl -k -H "Authorization:Bearer" $ID_TOKEN" https://10.38.201.191:8001/api/v1/namespaces/default/pods
@@ -486,10 +474,9 @@ curl -k -H "Authorization:Bearer" $ID_TOKEN" https://10.38.201.191:8001/api/v1/n
 
 ```
 https://www.ibm.com/support/knowledgecenter/SSBS6K_2.1.0.3/apis/access_api.html
-``
+```
 
 16. apiserver, scheduler 등에 대한 재 기동
-
 ```
 hybperkube apiserver 가 기동되고 있는지 확인하며 관련 yaml 설정 파일 위치를 확인한다.
 그리고 그 값을 바꾸고 난 뒤에
