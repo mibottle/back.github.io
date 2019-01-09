@@ -65,19 +65,22 @@ nameserver 10.38.201.250
 ```
 
 6. swap memory off 및 확인
+
 ```
-#/etc/fstab swap 항목 주석 처리하고 swapoff -a 진행
-#/dev/mapper/rhel-swap swap swap defaults 0 0
+# /etc/fstab swap 항목 주석 처리하고 swapoff -a 진행
+# /dev/mapper/rhel-swap swap swap defaults 0 0
 swappoff -a
 
-#명령어를 통해서 swap memory 가 off 되었는지 확인
-#swap memory가 여전히 사용중이라면 reboot 후 다시 확인
+# 명령어를 통해서 swap memory 가 off 되었는지 확인
+# swap memory가 여전히 사용중이라면 reboot 후 다시 확인
 free -m
 Mem: 32012 1505 
 swap: 0           0
+
 ```
 
 7. 패키지 설치
+
 ```
 #socat, ntp 설치
 sudo yum install -y socat ntp
@@ -85,6 +88,7 @@ sudo yum install -y socat ntp
 ```
 
 8. ntp 설정 (redhat)
+
 ```
 * (Redhat) sudo systemctl enable ntpd
 * (Redhat) sudo systemctl start ntpd
