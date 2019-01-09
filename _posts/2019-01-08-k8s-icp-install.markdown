@@ -112,7 +112,7 @@ $ sudo apt-get install python (2.7 version)
 #rhel 7이상은 default로 python 2.7.5 버전이 설치되어 있음
 ```
 
-13. /etc/hosts 
+13. /etc/hosts
 ```
 127.0.0.1       localhost
 #127.0.1.1     <host_name>
@@ -125,6 +125,7 @@ ff02::2 ip6-allrouters
 <worker_node_2_IP_address> <worker_node_2_IP_host_name>
 <proxy_node_IP_address> <proxy_node_host_name>
 ```
+
 ## NFS, NAS Mount 방법
 1. NFS  Mount (Master Node)
 ```
