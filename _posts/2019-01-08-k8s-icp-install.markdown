@@ -22,17 +22,20 @@ ICP 3.1.1 Install Guide
 -----
 
 1. DNS 설치
+
 ```
 #/etc/resolv.conf에 nameserver 설정 
 nameserver 10.38.201.250
 ```
 
 2. icp, docker install file copy
+
 ```
 * ibm-cloud-private-x86_64-3.1.1.tar.gz
 * icp-docker-18.03.01_x86_64.bin
 ```
 3. local storage 설정 
+
 ```
 * / 100G | all
 * /var/lib/docker 150G | master, mgmt, proxy, worker, va
@@ -45,6 +48,7 @@ nameserver 10.38.201.250
 ```
 
 4. NAS NFS
+
 ```
 * /var/lib/registry 100G | Master
 * /var/lib/icp/audit 100G | M
@@ -53,6 +57,7 @@ nameserver 10.38.201.250
 ```
 
 5. 방화벽
+
 ```
 * ZCP Portal 8080 / 8443
 * ZCP Cli API 8001 / 8888
@@ -84,6 +89,7 @@ sudo yum install -y socat ntp
 ```
 
 8. ntp 설정 (redhat)
+
 ```
 * (Redhat) sudo systemctl enable ntpd
 * (Redhat) sudo systemctl start ntpd
@@ -107,12 +113,15 @@ tar xvf ibm-cloud-private-x86_64-3.1.1.tar.gz -O | sudo docker load
 ```
 
 12. python 설치 확인
+
 ```
 $ python —version
 $ sudo apt-get install python (2.7 version)
 #rhel 7이상은 default로 python 2.7.5 버전이 설치되어 있음
 ```
+
 13. /etc/hosts 
+
 ```
 127.0.0.1       localhost
 #127.0.1.1     <host_name>
@@ -373,18 +382,21 @@ sudo docker run --net=host -t -e LICENSE=accept -v "$(pwd)":/installer/cluster i
 ````
 
 7. docker 이미지로 접속 방법
+
 ```
 $cd /opt/ibm-cloud-private-3.1.1/cluster
 $sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh
 ````
 
 8. Docker로 직접 접속해서 내부에서 실행 하는 방법 
+
 ```
 #Docker로 직접 접속해서  (sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh)
 #installer.sh install 실행 후 계속 FAILED일 경우
   $ kubectl get pod -n kube-system으로 Pod 동작여부 확인
 ```
 9. kubectl pod pending이면 describe로 내용 확인하여 빠젼 있는 부분 확인
+
 ```
 #node selector가 빠져 있을 때 (management=true) —> kubectl label 10.100.1.12 management=true 설정
 만약 PV 가 빠져 있을 때에는
@@ -414,6 +426,7 @@ spec:
 ````
 
 10. cluster 접속
+
 ```
 #docker 접속 후 sudo docker run --net=host -it -e LICENSE=accept -v "$(pwd)":/installer/cluster ibmcom/icp-inception-amd64:3.1.1-ee sh 실행
 #다음 것 실행
@@ -421,6 +434,7 @@ kubectl config set-cluster mycluster --server=https://196.90.1.94:8001 --insecur
 ````
 
 11. pod 생성 시 PodSecurity Policy 장애 (RunAsUser = MustRunAsNonRoot 문제)
+
 ```
 Events:
   Type     Reason     Age               From                 Message
@@ -446,6 +460,7 @@ $ kubectl edit psp ibm-restricted-psp
 ````
 
 12. audit log level 조정 
+
 ```
 /etc/cfc/conf/audit-policy.yaml 에서 로그 조정
 ````
@@ -453,6 +468,7 @@ $ kubectl edit psp ibm-restricted-psp
 13. prometheus 본체 memory size 조정 - > 24 node는 8G
 
 14. apiserver  restart
+
 ```
 /etc/cfc/conf/audit-policy.yaml 수정 후 재 로딩을 위해 kubelet을 재시작해야 함
 --> systemctl restart kubelet.service
@@ -460,12 +476,23 @@ apiserver를 재시작시키려면 systemctl restart kube-apiserver.service
 ```
 
 14. API 기반 로그인 및 Token 요청 방법
+
 ```
 $ curl -k -H "Content-Type:application/x-www-form-urlencoded:charset=UTF-8" -d "grant_type=password&username=admin&password=admin&scope=openid" https://10.38.201.191:8443/idprovider/auth/identitytoken --insecure
 curl -k -H "Authorization:Bearer" $ID_TOKEN" https://10.38.201.191:8001/api/v1/namespaces/default/pods
 ````
 
 15. k8s & ICPREST API 연계 가이드
+
 ```
 https://www.ibm.com/support/knowledgecenter/SSBS6K_2.1.0.3/apis/access_api.html
 ``
+
+16. apiserver, scheduler 등에 대한 재 기동
+
+```
+hybperkube apiserver 가 기동되고 있는지 확인하며 관련 yaml 설정 파일 위치를 확인한다.
+그리고 그 값을 바꾸고 난 뒤에
+
+k8s-master-*로 실행되고 있는 pod를 재 실행시키면 됨
+```
