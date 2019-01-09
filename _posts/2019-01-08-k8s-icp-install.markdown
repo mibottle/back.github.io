@@ -113,6 +113,7 @@ $ sudo apt-get install python (2.7 version)
 ```
 
 13. /etc/hosts
+
 ```
 127.0.0.1       localhost
 #127.0.1.1     <host_name>
