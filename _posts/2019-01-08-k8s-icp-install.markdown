@@ -134,7 +134,9 @@ ff02::2 ip6-allrouters
 ```
 
 ## NFS, NAS Mount 방법
+
 1. NFS  Mount (Master Node)
+
 ```
 mkdir -p /var/lib/registry
 mkdir -p /var/lib/icp/audit
@@ -145,7 +147,9 @@ mkdir -p /var/lib/icp/helmrepo
 $ mount -t nfs VNX5600_NAS:/Zcp_registry /var/lib/registry
 $~~~
 ```
+
 2. fstab 설정 (Master Node)
+
 ```
 #/etc/fstab 파일에 아래 내용 추가
 VNX5600_NAS:/Zcp_registry      /var/lib/registry nfs rw,hard  0 0
@@ -179,18 +183,20 @@ mkdir -p /var/lib/tmp
 
 #vi  /etc/fstab에 자동 마운트 설정
 /dev/mapper/DATAVG-lv_docker /var/lib/docker xfs defaults 0 0
-....
+...
 mount -a
 1.5 LV  확인 (Master Node)
 LV VG Attr LSize Pool
-....
+...
 나머지도 각 노드에 맞게 위의 절차에 따라 마운트 필요
+
 ```
 
 # 사전작업-Boot
 <hr/>
 ## private key와 public key 할당 방법
 ### If 이미 pem file이 있는 경우
+
 ```
 $ cp himang10 .ssh/id_rsa (private key    복사)
 $ cp .ssh/authorized_keys .ssh/id_rsa.pub
@@ -212,7 +218,7 @@ ssh-add /home/ubuntu/himang10.pem 으로 설정 (절체 패스로)
   https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.1/installing/ssh_keys.html
   #모든 노드에서 boot node의 ssh public key copy
   ssh-copy-id -i ~/.ssh/id_rsa.pub <user>@node_ip_address>
-````
+```
 
 ### 공통 작업
 
