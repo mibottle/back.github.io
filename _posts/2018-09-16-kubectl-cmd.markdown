@@ -23,6 +23,13 @@ kubectl config use-context
 kubectl config view 
 kubectl get node --show-labels
 ```
+### kubectl에서 두개의 계정으로 명령어 실행
+두개의 서로 다른 권한을 가진 두개의 개정으로 각가 접속하여 처리하기 위한 방법
+````
+kubectl config set-credentials alice --username=alice --password=password
+kubectl config set-credientials bob --usernamw=bob --password=password
+kubectl --user bot create -f pod-priviledge.yaml
+````
 
 ### namespace 변경
 ```
