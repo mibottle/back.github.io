@@ -11,9 +11,8 @@ Pod Security Policy 변경 방법
 ============
 
 # Table of Contents
-1. [command line에서 configmap 생성](#command-line에서-configmap-생성)
-2. [configmap entry creation](#configmap-entry-creation)
-3. [디렉토리 마운트 시 기존 디렉토리 파일을숨기지 않고 개별 configmap 엔트리로 마운트 방법](#configmap-entry-mount)
+1. [ICP 3.1.1 기본 PSP](#ICP-3.1.1-기본-PSP)
+2. [default PSP 변경 방법](#default-PSP-변경-방법)
 
 # ICP Namespace Default PSP 설정 변경 방법
 

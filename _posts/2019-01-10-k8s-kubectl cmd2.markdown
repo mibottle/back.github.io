@@ -8,8 +8,19 @@ author: himang10
 description: Kubernetes 관련 명령어 set 설명 두번째
 ---
 # Table of Contents
-[kubectl 기본 명령어](#kubectl-기본-명령어)
-[namespace 변경](#namespace-변경)
+1. [Kubectl 인증](#Kubectl-인증)
+2. [환경변수로 적용](#환경변수로-적용)
+2. [TLS 트래픽을 처리하기 위한 인그레스 설정](#TLS-트래픽을-처리하기-위한-인그레스-설정)
+2. [Container 내 명령어 실행](#Container-내-명령어-실행)
+2. [namespace 변경](#namespace-변경)
+2. [docker 기반 테스트 구성](#docker-기반-테스트-구성)
+2. [label](#label)
+2. [api version 확인](#api-version-확인)
+2. [api raw level query](#api-raw-level-query)
+2. [Kube 정보 검색](#Kube-정보-검색)
+2. [port-forward](#port-forward)
+
+
 
 # Kubeclt cmd 두번째
 
@@ -55,9 +66,11 @@ users:
     client-key: /Users/himang10/ywyi/icp3.1/cfc-certs/kubernetes/kubecfg.key
 ```
 
-## 환경변수로 적용(.icp.env)
+## 환경변수로 적용
 앞의 kube 인증 처리 구조와 namespace 변경
 ```
+# .icp.env
+
 kubectl config set-cluster mycluster --server=https://196.90.1.94:8001 --insecure-skip-tls-verify=true && kubectl config set-context mycluster-context --cluster=mycluster && kubectl config set-credentials admin --client-certificate=/Users/himang10/ywyi/icp3.1/cfc-certs/kubernetes/kubecfg.crt --client-key=/Users/himang10/ywyi/icp3.1/cfc-certs/kubernetes/kubecfg.key && kubectl config set-context mycluster-context --user=admin --namespace=ywyi && kubectl config use-context mycluster-context
 
 export HELM_HOME=~/ywyi/icp3.1/.helm
@@ -140,7 +153,7 @@ kubectl api-versions | grep autoscaling
 kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1" | jq .
 ````
 
-## Kube    정보 검색
+## Kube 정보 검색
 ```
 Kubectl get nodes -o jsonpath=‘{.item[*].status.address[?(type==“ExternalIP”)].address}'
 ````
