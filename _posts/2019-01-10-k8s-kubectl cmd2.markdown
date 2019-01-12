@@ -9,16 +9,16 @@ description: Kubernetes 관련 명령어 set 설명 두번째
 ---
 # Table of Contents
 1. [Kubectl 인증](#Kubectl-인증)
-2. [환경변수로 적용](#환경변수로-적용)
-2. [TLS 트래픽을 처리하기 위한 인그레스 설정](#TLS-트래픽을-처리하기-위한-인그레스-설정)
-2. [Container 내 명령어 실행](#Container-내-명령어-실행)
-2. [namespace 변경](#namespace-변경)
-2. [docker 기반 테스트 구성](#docker-기반-테스트-구성)
-2. [label](#label)
-2. [api version 확인](#api-version-확인)
-2. [api raw level query](#api-raw-level-query)
-2. [Kube 정보 검색](#Kube-정보-검색)
-2. [port-forward](#port-forward)
+1. [환경변수로 적용](#환경변수로-적용)
+1. [TLS 트래픽을 처리하기 위한 인그레스 설정](#TLS-트래픽을-처리하기-위한-인그레스-설정)
+1. [Container 내 명령어 실행](#Container-내-명령어-실행)
+1. [namespace 변경](#namespace-변경)
+1. [docker 기반 테스트 구성](#docker-기반-테스트-구성)
+1. [label](#label)
+1. [api version 확인](#api-version-확인)
+1. [api raw level query](#api-raw-level-query)
+1. [Kube 정보 검색](#Kube-정보-검색)
+1. [port-forward](#port-forward)
 
 
 

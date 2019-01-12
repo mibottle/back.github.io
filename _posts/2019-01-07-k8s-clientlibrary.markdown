@@ -11,11 +11,11 @@ kubernetes client library 정보
 ============
 
 ### 기존 클라이언트 라이브러리 사용
-[***Golang Client***](https://github.com/kubernetes/client-go)
-[***fabric8 java client***](https://github.com/fabric8io/kubernetes-client)
-[***Amdatu java client***](https://bitbucket.org/amdatulabs/amdatu-kubernetes)
-[***Tenxcloud Node.js***](https://github.com/tenxcloud/node-kubernetes-client)
-[***GoDaddy Node.js***](https://github.com/godaddy/kubernetes-client)
+1. [***Golang Client***(https://github.com/kubernetes/client-go)](https://github.com/kubernetes/client-go)
+2. [***fabric8 java client***(https://github.com/fabric8io/kubernetes-client)](https://github.com/fabric8io/kubernetes-client)
+3. [***Amdatu java client***(https://bitbucket.org/amdatulabs/amdatu-kubernetes)](https://bitbucket.org/amdatulabs/amdatu-kubernetes)
+4. [***Tenxcloud Node.js***(https://github.com/tenxcloud/node-kubernetes-client)](https://github.com/tenxcloud/node-kubernetes-client)
+5. [***GoDaddy Node.js***(https://github.com/godaddy/kubernetes-client)](https://github.com/godaddy/kubernetes-client)
 
 ### Swagger와 OpenAPI를 사용해 자신만의 라이브러리 구축
 > 프로그램밍 언어를 사용할 수 있는 클라이언트가 없다면 swagger api framework을 사용해 

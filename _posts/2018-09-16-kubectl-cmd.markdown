@@ -8,8 +8,9 @@ author: himang10
 description: Kubernetes 관련 명령어 set 설명
 ---
 # Table of Contents
-[kubectl 기본 명령어](#kubectl-기본-명령어)
-[namespace 변경](#namespace-변경)
+1. [kubectl 기본 명령어](#kubectl-기본-명령어)
+1. [Rolling Update Command](#Rolling-Update-Command)
+
 
 # Kubectl CMD
 

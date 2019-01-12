@@ -10,8 +10,6 @@ description: Kubernetes Network Acess
 Network
 ============
 
-# Table of Contents
-1. [xxx](#command-line에서-configmap-생성)
 
 ## 동일 namespace 내 Pod간 접근 차단 정책
 동일한 namespace 내 Pod 간에 접근을 기본적으로 통제하고 특정 Label Pod 간에 만 통신이 가능하도록 지원하는 방안

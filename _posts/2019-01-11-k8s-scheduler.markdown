@@ -147,11 +147,11 @@ spec:
     name: kubia
 ````
 * NodeAffinity Attribute 
-** requiresDuringScheduling...
-   Pod를 특정 노드에 스케쥴링을 위해 노드가 가지고 있어야 하는 Label 
-** ...IngoredDuringExecution
-   이미 실행 중인 포드에는 영향을 주지 않음
-** ...RequiredDuringExecution
+ - requiresDuringScheduling...
+    Pod를 특정 노드에 스케쥴링을 위해 노드가 가지고 있어야 하는 Label 
+ - ...IngoredDuringExecution
+    이미 실행 중인 포드에는 영향을 주지 않음
+ - ...RequiredDuringExecution
    노드에서 Label을 제거하면 현재 실행 중인 Pod는 새로운 Affinity에 따라 제 스케쥴링 됨
 
 ### 노드우선순위지정

@@ -88,8 +88,8 @@ CPU는 컨테이너에 한계가 설정되어 있으면 구성된 한계보다 �
 또한 각 스레드는 각각의 추가 메모리를 필요로 하게 되면서 메모리 소모량이 늘어날 수 있음
 
 * 해결 방안
-** Downward API를 사용해 컨테이너에 CPU 한계를 전달하고 애플리케이션이 시스템어서 볼 수 있는 CPU 수에 의존하는 대신 이를 사용
-** 컨네이너내 cpu.cfs-quota_us, cpu.cfs_period_us값을 읽어서 CPU 한계를 가져오는 방법
+ - Downward API를 사용해 컨테이너에 CPU 한계를 전달하고 애플리케이션이 시스템어서 볼 수 있는 CPU 수에 의존하는 대신 이를 사용
+ -  컨네이너내 cpu.cfs-quota_us, cpu.cfs_period_us값을 읽어서 CPU 한계를 가져오는 방법
 ```
 $ kubectl exec -it requests-pod sh
 / # cd /sys/fs/cgroup/
